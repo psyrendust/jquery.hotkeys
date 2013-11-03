@@ -113,6 +113,21 @@
 		};
 	}
 
+	function isFunction(input)  { return (Object.prototype.toString.call(input) === '[object Function]' ); }
+	function isArray(input)     { return (Object.prototype.toString.call(input) === '[object Array]'    ); }
+	function isBoolean(input)   { return (Object.prototype.toString.call(input) === '[object Boolean]'  ); }
+	function isObject(input)    { return (Object.prototype.toString.call(input) === '[object Object]'   ); }
+	function isInteger(input)   { return (Object.prototype.toString.call(input) === '[object Integer]'  ); }
+	function isUndefined(input) { return (Object.prototype.toString.call(input) === '[object Undefined]'); }
+	function isString(input)    { return (Object.prototype.toString.call(input) === '[object String]'   ); }
+	function expandReplacements(input) {
+		var expansion = [];
+		$.each(input, function (key, value) {
+			expansion.push( jQuery.hotkeys.replacements[value] ? jQuery.hotkeys.replacements[value] : value );
+		});
+		return expansion.join(' ');
+	}
+
 	jQuery.each([ "keydown", "keyup", "keypress" ], function() {
 		jQuery.event.special[ this ] = { add: keyHandler };
 	});
