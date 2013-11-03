@@ -20,6 +20,14 @@
 	jQuery.hotkeys = {
 		version: "0.8",
 
+		replacements: {
+			'0-9': '1 2 3 4 5 6 7 8 9 0',
+			'a-z': 'a b c d e f g h i j k l m n o p q r s t u v w x y z',
+			'numpad': '1 2 3 4 5 6 7 8 9 0 / * - + return .',
+			'arrow': 'left up right down',
+			'ccpu': 'ctrl+x ctrl+c ctrl+v ctrl+z meta+x meta+c meta+v meta+z'
+		},
+
 		specialKeys: {
 			8: "backspace", 9: "tab", 10: "return", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
 			20: "capslock", 27: "esc", 32: "space", 33: "pageup", 34: "pagedown", 35: "end", 36: "home",
