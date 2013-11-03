@@ -16,7 +16,7 @@
  */
 
 (function(jQuery){
-	
+
 	jQuery.hotkeys = {
 		version: "0.8",
 
@@ -39,17 +39,30 @@
 			122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 186: ";", 187: "=", 188: ",",
 			189: "-", 190: ".", 191: "/", 219: "[", 220: "\\", 221: "]", 222: "'", 224: "meta"
 		},
-	
+
 		shiftNums: {
-			"`": "~", "1": "!", "2": "@", "3": "#", "4": "$", "5": "%", "6": "^", "7": "&", 
-			"8": "*", "9": "(", "0": ")", "-": "_", "=": "+", ";": ": ", "'": "\"", ",": "<", 
-			".": ">",  "/": "?",  "\\": "|"
+			"`": "~", "1": "!", "2": "@", "3": "#", "4": "$", "5": "%", "6": "^", "7": "&",
+			"8": "*", "9": "(", "0": ")", "-": "_", "=": "+", ";": ":", "'": "\"", ",": "<",
+			".": ">",  "/": "?",  "\\": "|", "[": "{", "]": "}"
+		},
+
+		combos: {
+			'ctrl+x': 'cut',
+			'ctrl+c': 'copy',
+			'ctrl+v': 'paste',
+			'ctrl+z': 'undo',
+			'meta+x': 'cut',
+			'meta+c': 'copy',
+			'meta+v': 'paste',
+			'meta+z': 'undo'
 		}
 	};
 
 	function keyHandler( handleObj ) {
-		if ( typeof handleObj.data === "string" ) {
+		if ( isString(handleObj.data) ) {
 			handleObj.data = { keys: handleObj.data };
+		} else if ( isArray(handleObj.data) ) {
+			handleObj.data = { keys: expandReplacements(handleObj.data) };
 		}
 
 		// Only care when a possible input has been specified
@@ -60,7 +73,6 @@
 		var origHandler = handleObj.handler,
 			keys = handleObj.data.keys.toLowerCase().split(" "),
 			textAcceptingInputTypes = ["text", "password", "number", "email", "url", "range", "date", "month", "week", "time", "datetime", "datetime-local", "search", "color", "tel"];
-	
 		handleObj.handler = function( event ) {
 			// Don't fire in text-accepting inputs that we didn't directly bind to
 			if ( this !== event.target && (/textarea|select/i.test( event.target.nodeName ) ||
@@ -68,10 +80,10 @@
 				return;
 			}
 
-			var special = jQuery.hotkeys.specialKeys[ event.keyCode ],
-				// character codes are available only in keypress
-				character = event.type === "keypress" && String.fromCharCode( event.which ).toLowerCase(),
-				modif = "", possible = {};
+			// Keypress represents characters, not special keys
+			var special = jQuery.hotkeys.specialKeys[ event.which ],
+				character = event.type !== "keypress" && String.fromCharCode( event.which ).toLowerCase(),
+				key, modif = "", possible = {};
 
 			// check combinations (alt|ctrl|shift+anything)
 			if ( event.altKey && special !== "alt" ) {
@@ -81,7 +93,7 @@
 			if ( event.ctrlKey && special !== "ctrl" ) {
 				modif += "ctrl+";
 			}
-			
+
 			// TODO: Need to make sure this works consistently across platforms
 			if ( event.metaKey && !event.ctrlKey && special !== "meta" ) {
 				modif += "meta+";
@@ -92,16 +104,21 @@
 			}
 
 			if ( special ) {
+				if ( modif === "shift+" ) {
+					special = jQuery.hotkeys.shiftNums[ special ];
+				}
 				possible[ modif + special ] = true;
-			}
-
-			if ( character ) {
+				arguments[0].normalized = special;
+			} else if ( character ) {
 				possible[ modif + character ] = true;
 				possible[ modif + jQuery.hotkeys.shiftNums[ character ] ] = true;
-
+				arguments[0].normalized = character;
 				// "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
 				if ( modif === "shift+" ) {
 					possible[ jQuery.hotkeys.shiftNums[ character ] ] = true;
+					arguments[0].normalized = jQuery.hotkeys.shiftNums[ character ];
+				} else if ( jQuery.hotkeys.combos[modif + character] ) {
+					arguments[0].normalized = jQuery.hotkeys.combos[modif + character];
 				}
 			}
 
