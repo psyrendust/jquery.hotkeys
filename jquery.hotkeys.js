@@ -21,11 +21,21 @@
 		version: "0.8",
 
 		replacements: {
-			'0-9': '1 2 3 4 5 6 7 8 9 0',
+			/* sets that make up all keyboard keys when combined together */
 			'a-z': 'a b c d e f g h i j k l m n o p q r s t u v w x y z',
-			'numpad': '1 2 3 4 5 6 7 8 9 0 / * - + return .',
+			'shifted': '~ ! @ # $ % ^ & * ( ) _ + { } | : " < > ?',
+			'nonshifted': '` 1 2 3 4 5 6 7 8 9 0 - = [ ] \\ ; \' , . /',
 			'arrow': 'left up right down',
-			'ccpu': 'ctrl+x ctrl+c ctrl+v ctrl+z meta+x meta+c meta+v meta+z'
+			'special': 'backspace tab return shift ctrl alt pause capslock esc space pageup pagedown end home insert delete del numlock scroll meta',
+			'function': 'f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12',
+			/* special sets */
+			'0-9': '1 2 3 4 5 6 7 8 9 0',
+			'numpad': '1 2 3 4 5 6 7 8 9 0 / * - + return .',
+			'undo': 'ctrl+z meta+z',
+			'cut': 'ctrl+x meta+x',
+			'copy': 'ctrl+c meta+c',
+			'paste': 'ctrl+v meta+v',
+			'operators': '= + - * / % < >',
 		},
 
 		specialKeys: {
@@ -66,7 +76,7 @@
 		}
 
 		// Only care when a possible input has been specified
-		if ( !handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== "string" ) {
+		if ( !handleObj.data || !handleObj.data.keys || !isString(handleObj.data.keys) ) {
 			return;
 		}
 
@@ -137,12 +147,19 @@
 	function isInteger(input)   { return (Object.prototype.toString.call(input) === '[object Integer]'  ); }
 	function isUndefined(input) { return (Object.prototype.toString.call(input) === '[object Undefined]'); }
 	function isString(input)    { return (Object.prototype.toString.call(input) === '[object String]'   ); }
+	function unique(list) {
+			var result = [];
+			$.each(list, function(key, value) {
+				if ($.inArray(value, result) === -1) result.push(value);
+			});
+			return result;
+	}
 	function expandReplacements(input) {
 		var expansion = [];
 		$.each(input, function (key, value) {
 			expansion.push( jQuery.hotkeys.replacements[value] ? jQuery.hotkeys.replacements[value] : value );
 		});
-		return expansion.join(' ');
+		return unique(expansion).join(' ');
 	}
 
 	jQuery.each([ "keydown", "keyup", "keypress" ], function() {
