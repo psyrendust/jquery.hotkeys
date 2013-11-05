@@ -1,7 +1,7 @@
 #About
 **jQuery Hotkeys** is a plug-in that lets you easily add and remove handlers for keyboard events anywhere in your code supporting almost any key combination.  
 
-This plugin is based off of the plugin by Tzury Bar Yochay: [jQuery.hotkeys](https://github.com/tzuryby/jquery.hotkeys)
+This plugin is based off of the plugin by Tzury Bar Yochay [jQuery.hotkeys](https://github.com/tzuryby/jquery.hotkeys) and later extended by John Resig [jQuery.hotkeys](https://github.com/jeresig/jquery.hotkeys).
 
 The syntax is as follows:
 
@@ -14,7 +14,7 @@ The syntax is as follows:
     $('input.foo').bind('keyup', '$', function(){
       this.value = this.value.replace('$', 'EUR');
     });
-    
+
 Syntax when wanting to use jQuery's `on()`/`off` methods:
 
     $(expression).on(types, null, keys, handler);
@@ -25,10 +25,52 @@ Syntax when wanting to use jQuery's `on()`/`off` methods:
     // e.g. replace '$' sign with 'EUR'
     $('input.foo').on('keyup', null, '$', function(){
       this.value = this.value.replace('$', 'EUR');
-    });     
+    });
+
+Syntax when wanting to use a single shortcut exapansions:
+
+    $(expression).bind(types, keys, handler);
+    $(expression).unbind(types, handler);
+    
+    $(document).bind('keydown', 'a-z', fn);
+
+The last example will will listen for all letters `a-z`.
+
+Syntax when wanting to use multiple shortcut exapansions:
+
+    $(expression).bind(types, keys, handler);
+    $(expression).unbind(types, handler);
+    
+    $(document).bind('keydown', ['a-z', '0-9'], fn);
+
+The last example will will listen for all letters `a-z` and all numbers `0-9`.
 
 ## Types
-Supported types are `'keydown'`, `'keyup'` and `'keypress'`   
+Supported types are `'keydown'`, `'keyup'` and `'keypress'`
+
+## Event Object
+The Event object that gets return to the handler has been augmented to include a `normalized` attribute that contains the interpreted character that was found by the plugin. This may include values such as `backspace`, `del`, or `left` which represents special keys. This attribute has been tested to work with `keydown` listener types.
+
+## Availble Expansions
+
+### Expansion sets that make up all keyboard keys when combined together.
+* `a-z`: a b c d e f g h i j k l m n o p q r s t u v w x y z
+* `shifted`: ~ ! @ # $ % ^ & * ( ) _ + { } | : " < > ?
+* `nonshifted`: ` 1 2 3 4 5 6 7 8 9 0 - = [ ] \\ ; \' , . /
+* `arrow`: left up right down
+* `special`: backspace tab return shift ctrl alt pause capslock esc space pageup pagedown end home insert delete del numlock scroll meta
+* `function`: f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+
+### Special expansion sets
+* `0-9`: 1 2 3 4 5 6 7 8 9 0
+* `numpad`: '1 2 3 4 5 6 7 8 9 0 / * - + return .
+* `undo`: 'ctrl+z meta+z
+* `cut`: 'ctrl+x meta+x
+* `copy`: 'ctrl+c meta+c
+* `paste`: 'ctrl+v meta+v
+* `operators`: '= + - * / % < >
+
+
 
 ## Notes
 

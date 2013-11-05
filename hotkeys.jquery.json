@@ -6,16 +6,14 @@
     "keyboard",
     "events"
   ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
-    "name": "John Resig",
-    "url": "https://ejohn.org/"
+    "name": "Larry Gordon",
+    "url": "https://github.com/psyrendust"
   },
   "maintainers": [
     {
-      "name": "John Resig",
-      "email": "jeresig@gmail.com",
-      "url": "http://ejohn.org/"
+      "name": "Larry Gordon"
     }
   ],
   "licenses": [
@@ -28,8 +26,8 @@
       "url": "http://www.gnu.org/licenses/gpl-2.0.html"
     }
   ],
-  "homepage": "https://github.com/jeresig/jquery.hotkeys",
-  "docs": "https://github.com/jeresig/jquery.hotkeys",
+  "homepage": "https://github.com/psyrendust/jquery.hotkeys",
+  "docs": "https://github.com/psyrendust/jquery.hotkeys",
   "dependencies": {
     "jquery": ">=1.4.2"
   }
