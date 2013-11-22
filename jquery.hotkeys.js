@@ -14,7 +14,7 @@
 (function(jQuery){
 
   jQuery.hotkeys = {
-    version: '0.2.0',
+    version: '0.2.3',
 
     replacements: {
       /* sets that make up all keyboard keys when combined together */
