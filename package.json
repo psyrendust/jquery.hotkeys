@@ -1,15 +1,48 @@
 {
   "name": "jquery.hotkeys",
-  "version": "0.2.3",
+  "title": "jQuery Hotkeys",
+  "version": "0.2.4",
   "description": "**jQuery Hotkeys** is a plug-in that lets you easily add and remove handlers for keyboard events anywhere in your code supporting almost any key combination.",
-  "main": "jquery.hotkeys.js",
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.5.4"
-  },
+  "homepage": "https://github.com/xero-github/jquery.hotkeys",
+  "docs": "https://github.com/xero-github/jquery.hotkeys",
+  "main": [
+    "dist/jquery.hotkeys.js",
+    "dist/jquery.hotkeys.min.js"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/psyrendust/jquery.hotkeys"
+    "url": "https://github.com/xero-github/jquery.hotkeys"
   },
-  "license": "MIT or GPL Version 2"
+  "author": {
+    "name": "Xero",
+    "url": "https://github.com/xero-github"
+  },
+  "maintainers": [
+    {
+      "name": "Larry Gordon",
+      "url": "https://github.com/psyrendust"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    },
+    {
+      "type": "GPLv2",
+      "url": "http://www.gnu.org/licenses/gpl-2.0.html"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "jshint": "~2.4.0"
+  },
+  "keywords": [
+    "keyboard",
+    "events"
+  ]
 }
