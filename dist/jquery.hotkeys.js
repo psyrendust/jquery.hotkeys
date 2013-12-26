@@ -1,7 +1,8 @@
-/*
- * jQuery Hotkeys Plugin
- * Copyright 2013, Larry Gordon
- * Dual licensed under the MIT or GPL Version 2 licenses.
+/*!
+ * jQuery Hotkeys - v0.2.4
+ * Copyright 2013, Xero
+ * https://github.com/xero-github/jquery.hotkeys
+ * Licensed MIT, GPLv2.
  *
  * Based upon the plugin by Tzury Bar Yochay and extended by John Resig:
  * https://github.com/tzuryby/hotkeys
@@ -10,8 +11,8 @@
  * Original idea by:
  * Binny V A, http://www.openjs.com/scripts/events/keyboard_shortcuts/
 */
-
 (function(jQuery){
+  'use strict';
 
   jQuery.hotkeys = {
     version: '0.2.3',
@@ -34,6 +35,7 @@
       'operators': '= + - * / % < >',
     },
 
+    /* jshint ignore:start */
     specialKeys: {
       // '=' can be either 107 or 187 depending on it's location on the keyboard
       8: 'backspace', 9: 'tab', 13: 'return', 16: 'shift', 17: 'ctrl', 18: 'alt', 19: 'pause',
@@ -51,6 +53,7 @@
       '8': '*', '9': '(', '0': ')', '-': '_', '=': '+', ';': ':', '\'': '"', ',': '<',
       '.': '>',  '/': '?',  '\\': '|', '[': '{', ']': '}'
     },
+    /* jshint ignore:end */
 
     combos: {
       'ctrl+x': 'cut',
@@ -89,7 +92,7 @@
       // Keypress represents characters, not special keys
       var special = jQuery.hotkeys.specialKeys[ event.which ],
         character = event.type !== 'keypress' && String.fromCharCode( event.which ).toLowerCase(),
-        key, modif = '', possible = {};
+        modif = '', possible = {};
 
       // check combinations (alt|ctrl|shift+anything)
       if ( event.altKey && special !== 'alt' ) {
@@ -144,11 +147,13 @@
   function isUndefined(input) { return (Object.prototype.toString.call(input) === '[object Undefined]'); }
   function isString(input)    { return (Object.prototype.toString.call(input) === '[object String]'   ); }
   function unique(list) {
-      var result = [];
-      $.each(list, function(key, value) {
-        if ($.inArray(value, result) === -1) result.push(value);
-      });
-      return result;
+    var result = [];
+    $.each(list, function(key, value) {
+      if ($.inArray(value, result) === -1) {
+        result.push(value);
+      }
+    });
+    return result;
   }
   function expandReplacements(input) {
     var expansion = [];
