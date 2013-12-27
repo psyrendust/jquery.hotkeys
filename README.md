@@ -3,45 +3,62 @@
 
 This plugin is based off of the plugin by Tzury Bar Yochay [jQuery.hotkeys](https://github.com/tzuryby/jquery.hotkeys) and later extended by John Resig [jQuery.hotkeys](https://github.com/jeresig/jquery.hotkeys).
 
+## Installation ##
+You can install this plugin with [Bower](http://bower.io/) with this command:
+
+```js
+bower install xero.jquery.hotkeys --save-dev
+```
+
+## Usage ##
+
 The syntax is as follows:
 
-    $(expression).bind(types, keys, handler);
-    $(expression).unbind(types, handler);
-    
-    $(document).bind('keydown', 'ctrl+a', fn);
-    
-    // e.g. replace '$' sign with 'EUR'
-    $('input.foo').bind('keyup', '$', function(){
-      this.value = this.value.replace('$', 'EUR');
-    });
+```js
+$(expression).bind(types, keys, handler);
+$(expression).unbind(types, handler);
+
+$(document).bind('keydown', 'ctrl+a', fn);
+
+// e.g. replace '$' sign with 'EUR'
+$('input.foo').bind('keyup', '$', function(){
+  this.value = this.value.replace('$', 'EUR');
+});
+```
 
 Syntax when wanting to use jQuery's `on()`/`off` methods:
 
-    $(expression).on(types, null, keys, handler);
-    $(expression).off(types, handler);
-    
-    $(document).on('keydown', null, 'ctrl+a', fn);
-    
-    // e.g. replace '$' sign with 'EUR'
-    $('input.foo').on('keyup', null, '$', function(){
-      this.value = this.value.replace('$', 'EUR');
-    });
+```js
+$(expression).on(types, null, keys, handler);
+$(expression).off(types, handler);
+
+$(document).on('keydown', null, 'ctrl+a', fn);
+
+// e.g. replace '$' sign with 'EUR'
+$('input.foo').on('keyup', null, '$', function(){
+  this.value = this.value.replace('$', 'EUR');
+});
+```
 
 Syntax when wanting to use a single shortcut exapansions:
 
-    $(expression).bind(types, keys, handler);
-    $(expression).unbind(types, handler);
-    
-    $(document).bind('keydown', 'a-z', fn);
+```js
+$(expression).bind(types, keys, handler);
+$(expression).unbind(types, handler);
+
+$(document).bind('keydown', 'a-z', fn);
+```
 
 The last example will will listen for all letters `a-z`.
 
 Syntax when wanting to use multiple shortcut exapansions:
 
-    $(expression).bind(types, keys, handler);
-    $(expression).unbind(types, handler);
-    
-    $(document).bind('keydown', ['a-z', '0-9'], fn);
+```js
+$(expression).bind(types, keys, handler);
+$(expression).unbind(types, handler);
+
+$(document).bind('keydown', ['a-z', '0-9'], fn);
+```
 
 The last example will will listen for all letters `a-z` and all numbers `0-9`.
 
