@@ -1,7 +1,7 @@
 {
   "name": "jquery.hotkeys",
   "title": "jQuery Hotkeys",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "**jQuery Hotkeys** is a plug-in that lets you easily add and remove handlers for keyboard events anywhere in your code supporting almost any key combination.",
   "homepage": "https://github.com/xero-github/jquery.hotkeys",
   "docs": "https://github.com/xero-github/jquery.hotkeys",
