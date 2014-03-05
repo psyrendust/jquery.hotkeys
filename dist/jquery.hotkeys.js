@@ -1,5 +1,5 @@
 /*!
- * jQuery Hotkeys - v0.2.5
+ * jQuery Hotkeys - v0.2.6
  * Copyright 2014, Xero
  * https://github.com/xero-github/jquery.hotkeys
  * Licensed MIT, GPLv2.
@@ -15,14 +15,14 @@
   'use strict';
 
   jQuery.hotkeys = {
-    version: '0.2.5',
+    version: '0.2.6',
 
     replacements: {
       /* sets that make up all keyboard keys when combined together */
       'a-z': 'a b c d e f g h i j k l m n o p q r s t u v w x y z',
       'A-Z': 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z',
       'a-Z': 'a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z',
-      'shifted': '~ ! @ # $ % ^ & * ( ) _ + { } | : " < > ? shift+~ shift+! shift+@ shift+# shift+$ shift+% shift+^ shift+& shift+* shift+( shift+) shift+_ shift++ shift+{ shift+} shift+| shift+: shift+" shift+< shift+> shift+?',
+      'shifted': '~ ! @ # $ % ^ & * ( ) _ + { } | : " < > ? shift+~ shift+! shift+@ shift+# shift+$ shift+% shift+^ shift+& shift+* shift+( shift+) shift+_ shift++ shift+{ shift+} shift+| shift+: shift+" shift+< shift+> shift+? shift+a shift+b shift+c shift+d shift+e shift+f shift+g shift+h shift+i shift+j shift+k shift+l shift+m shift+n shift+o shift+p shift+q shift+r shift+s shift+t shift+u shift+v shift+w shift+x shift+y shift+z shift+A shift+B shift+C shift+D shift+E shift+F shift+G shift+H shift+I shift+J shift+K shift+L shift+M shift+N shift+O shift+P shift+Q shift+R shift+S shift+T shift+U shift+V shift+W shift+X shift+Y shift+Z',
       'nonshifted': '` 1 2 3 4 5 6 7 8 9 0 - = [ ] \\ ; \' , . /',
       'arrow': 'left up right down',
       'special': 'backspace tab return shift ctrl alt pause capslock esc space pageup pagedown end home insert delete del numlock scroll meta',
