@@ -2,7 +2,7 @@
   'use strict';
 
   jQuery.hotkeys = {
-    version: '0.2.5',
+    version: '0.2.6',
 
     replacements: {
       /* sets that make up all keyboard keys when combined together */
